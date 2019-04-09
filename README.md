@@ -8,7 +8,12 @@ Koala is an open source data analysis / manipulation tool for Python.
 
 The above command will create an environment using the anaconda package manager.
 
+To activate the environment:
 
+`conda activate koala`
+
+To deactivate the environement:
+`conda deactivate`
 
 ## Release History
 
