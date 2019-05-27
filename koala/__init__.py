@@ -69,6 +69,19 @@ class DataFrame:
         int: the number of rows in the dataframe
         """
         return len(next(iter(self._data.values())))
+
+    @property
+    def columns(self):
+        """
+        _data holds column names mapped to arrays
+        take advantage of internal ordering of dictionaries to
+        put columns in correct order in list. Only works in 3.6+
+
+        Returns
+        -------
+        list of column names
+        """
+        return list(self._data)
                 
 
 
