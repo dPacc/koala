@@ -111,6 +111,16 @@ class DataFrame:
         new_data = dict(zip(columns, self._data.values()))
         self._data = new_data
 
+
+    @property
+    def shape(self):
+        """
+        Returns
+        -------
+        two-item tuple of number of rows and columns
+        """
+        return len(self), len(self.columns)
+
                 
 
 
