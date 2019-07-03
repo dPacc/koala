@@ -1,4 +1,4 @@
-import numpy as np 
+import numpy as np
 
 __version__ = '0.0.1'
 
@@ -8,7 +8,7 @@ class DataFrame:
     def __init__(self, data):
         """
         A DataFrame holds two dimensional heterogeneous data. It can
-        be created by passing a dictionary of Numpy arrays associated with 
+        be created by passing a dictionary of Numpy arrays associated with
         each string.
 
         Parameters
@@ -43,7 +43,7 @@ class DataFrame:
             else:
                 if values.ndim != 1:
                     raise ValueError('Each value must be a 1-D NumPy array')
-    
+
     def _check_array_lengths(self, data):
         for i, values in enumerate(data.values()):
             if i == 0:
@@ -121,6 +121,41 @@ class DataFrame:
         """
         return len(self), len(self.columns)
 
-                
 
+    def _repr_html_(self):
+        html += '<table><thead><tr><th></th>'
+        for col in self.columns:
+            html += f"<th>{col:10}</th>"
 
+        html += '</tr></thead>'
+        html += "<tbody>"
+
+        only_head = False
+        num_head = 10
+        num_tail = 10
+        if len(self) <= 20:
+            only_head = True
+            num_head = len(self)
+
+        for i in range(num_head):
+            html += f'<tr><td><strong>{i}</strong></td>'
+            for col, values in self._data.items():
+                kind = values.dtype.kind
+                if kind == 'f':
+                    html += f'<td>{values[i]:10.3f}</td>'
+                elif kind == 'b':
+                    html += f'<td>{values[i]}</td>'
+                elif kind == 'O':
+                    v = values[i]
+                    if v is None:
+                        v = 'None'
+                    html += f'<td>{v:10}</td>'
+                else:
+                    html += f'<td>{values[i]:10}</td>'
+            html += '</tr>'
+
+        if not only_head:
+            html += '<tr><strong><td>...</td></strong>'
+            for i in range(len(self.columns)):
+                html += '<td>...</td>'
+            html += '</tr>'
