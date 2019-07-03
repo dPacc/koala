@@ -186,3 +186,20 @@ class DataFrame:
         Return a single 2D numpy array of the underlying data
         """
         return np.column_stack(self._data.values())
+
+
+    @property
+    def dtypes(self):
+        """
+        Returns a two column dataframe of column names
+        in one and their data type in the other
+        """
+        DTYPE_NAME = {'O': 'string', 'i': 'int', 'f': 'float', 'b': 'bool'}
+        col_arr = np.array(self.columns)
+        dtypes = []
+        for values in self._data.values():
+            kind = values.dtype.kind
+            dtype = DTYPE_NAME[kind]
+            dtypes.appedn(dtype)
+
+        return DataFrame({'Column Name': col_arr, 'Data Type': np.array(dtypes)})
