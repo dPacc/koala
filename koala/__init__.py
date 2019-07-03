@@ -178,3 +178,11 @@ class DataFrame:
 
         html += '</tbody></table>'
         return html
+
+
+    @property
+    def values(self):
+        """
+        Return a single 2D numpy array of the underlying data
+        """
+        return np.column_stack(self._data.values())
