@@ -284,3 +284,8 @@ class DataFrame:
         for col in col_selection:
             new_data[col] = self._data[col][row_selection]
         return DataFrame(new_data)
+
+
+    def _ipython_key_completions_(self):
+        # Allows for tab completion when dealing with DataFrames
+        return self.columns
