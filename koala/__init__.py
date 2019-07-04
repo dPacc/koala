@@ -236,4 +236,51 @@ class DataFrame:
             raise TypeError('Select with either a string, a list or a row and column'
                             'simultaneous selection')
 
-                            
+    def _getitem_tuple(self, item):
+        # Simultaneous selction of rows and cols
+        if len(item) != 2:
+            raise valueError('Pass either a single string or a two-tem tuple inside the selection operator')
+
+        row_selection = item[0]
+        col_selection = item[1]
+        if isinstance(row_selection, int):
+            row_selection = [row_selection]
+        elif isinstance(row_selection, DataFrame):
+            if row_selection.shape[1] != 1:
+                raise ValueError('Can only pass a one column DataFrame for selection')
+            row_selection = next(iter(row_selection._data.values()))
+            if row_selection.dtype.kind != 'b':
+                raise TypeError('DataFrame must be a boolean')
+        elif not isninstance(row_selection, (list, slice)):
+            raise TypeError('Row selection must be either an int, slice, list or a DataFrame')
+
+        if isinstance(col_selection, int):
+            col_selection = [self.columns[col_selection]]
+        elif isinstance(col_selection, str):
+            col_selection = [col_selection]
+        elif isinstance(col_selection, list):
+            new_col_selection = []
+            for col in col_selection:
+                if isinstance(col, int):
+                    new_col_selection.append(self.columns[col])
+                else:
+                    new_col_selection.append(col)
+            col_selection = new_col_selection
+        elif isinstance(col_selection, slice):
+            start = col_selection.start
+            stop = col_selection.stop
+            step = col_selection.step
+            if isinstance(start, str):
+                start = self.columns.index(col_selection.start)
+            if isinstance(stop, str):
+                stop = self.columns.index(col_selection.stop) + 1
+
+            col_selection = self.columns[start:stop:step]
+
+        else:
+            raise TypeError('Column selection must be either an int, string, list or slice')
+
+        new_data = {}
+        for col in col_selection:
+            new_data[col] = self._data[col][row_selection]
+        return DataFrame(new_data)
