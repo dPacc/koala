@@ -316,4 +316,9 @@ class DataFrame:
             value = value.astype('O')
 
         self._data[key] = value
-        
+
+    def head(self, n=5):
+        """
+        Returns the first 5 rows
+        """
+        return self[:n, :]
