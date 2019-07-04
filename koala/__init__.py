@@ -203,3 +203,37 @@ class DataFrame:
             dtypes.appedn(dtype)
 
         return DataFrame({'Column Name': col_arr, 'Data Type': np.array(dtypes)})
+
+
+    @property
+    def __getitem__(self, item):
+        """
+        Returns a subset of the original DataFrame
+        """
+
+        if isinstance(item, str):
+            return DataFrame({item: self._data[item]})
+
+        if isinstance(item, list):
+            return DataFrame({col: self._data[col] for col in item})
+
+        if isinstance(item, DataFrame):
+            if item.shape[1] != 1:
+                raise ValueError('Can only pass one column DataFrame for the selection')
+
+           bool_arr = next    (iter(item._data.values()))
+           if bool_arr.dtype.kind != 'b':
+               raise TypeError('DataFrame must be a boolean')
+
+            new_data = {}
+            for col, values in self._data.items():
+                new_data[col] = values[bool_arr]
+            return DataFrame(new_data)
+
+        if isinstance(item, tuple):
+            return self._getitem_tuple(item)
+        else:
+            raise TypeError('Select with either a string, a list or a row and column'
+                            'simultaneous selection')
+
+                            
