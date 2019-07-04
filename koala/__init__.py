@@ -322,3 +322,9 @@ class DataFrame:
         Returns the first 5 rows
         """
         return self[:n, :]
+
+    def tail(self, n=5):
+        """
+        Returns the last 5 rows
+        """
+        return self[-n:, :]
