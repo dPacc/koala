@@ -289,3 +289,31 @@ class DataFrame:
     def _ipython_key_completions_(self):
         # Allows for tab completion when dealing with DataFrames
         return self.columns
+
+    def __setitem__(self, key, value):
+        # Adds a new column or overwrites an old column
+        if not isinstance(key, str):
+            raise NotImplementedError('Only able to set a single column')
+
+        if isinstance(value, np.ndarray):
+            if value.ndim != 1:
+                raise ValueError('Setting array must be 1D')
+            if len(value) != len(self):
+                raise ValueError('Setting DataFrame must be one column')
+        elif isinstance(value, DataFrame):
+            if value.shape[1] != 1:
+                raise ValueError('Setting DataFrame must be one column')
+            if len(value) != len(self):
+                raise ValueError('Setting and Callinf DataFrames must be the same length')
+            value = next(iter(value._data.values()))
+        elif isinstance(value, (int, str, float, bool)):
+            value = np.repeat(value, len(self))
+        else:
+            raise TypeError('Setting value muse either be a numpy array, '
+                            'DataFrame, integer, string, float or boolean')
+
+        if value.dtype.kind == 'U':
+            value = value.astype('O')
+
+        self._data[key] = value
+        
