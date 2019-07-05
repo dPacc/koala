@@ -328,3 +328,10 @@ class DataFrame:
         Returns the last 5 rows
         """
         return self[-n:, :]
+
+    #### Aggregation Methods ###
+    def min(self):
+        return self._agg(np.min)
+
+    def max(self):
+        return self._agg(np.max)    
