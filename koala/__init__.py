@@ -341,4 +341,9 @@ class DataFrame:
 
     def median(self):
         return self._agg(np.median)
-  
+
+    def sum(self):
+        return self._agg(np.sum)
+
+    def var(self):
+        return self._agg(np.var)
