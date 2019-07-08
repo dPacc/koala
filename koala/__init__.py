@@ -359,3 +359,20 @@ class DataFrame:
 
     def argmin(self):
         return self._agg(np.argmin)
+
+    def _agg(self, aggfunc):
+        """
+        Generic aggregation function that is applied to each column
+
+        Returns a dataframe
+        """
+        new_data = {}
+        for col, values in  self._data.items():
+            try:
+                val = aggfunc(values)
+            except TypeError:
+                continue
+            new_data[col] = np.array([val])
+        return DataFrame(new_data)
+
+        
