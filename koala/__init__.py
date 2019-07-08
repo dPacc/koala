@@ -334,4 +334,11 @@ class DataFrame:
         return self._agg(np.min)
 
     def max(self):
-        return self._agg(np.max)    
+        return self._agg(np.max)
+
+    def mean(self):
+        return self._agg(np.mean)
+
+    def median(self):
+        return self._agg(np.median)
+  
