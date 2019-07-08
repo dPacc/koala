@@ -347,3 +347,15 @@ class DataFrame:
 
     def var(self):
         return self._agg(np.var)
+
+    def std(self):
+        return self._agg(np.std)
+
+    def all(self):
+        return self._agg(np.any)
+
+    def argmax(self):
+        return self._agg(np.argmax)
+
+    def argmin(self):
+        return self._agg(np.argmin)
