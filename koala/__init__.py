@@ -377,7 +377,7 @@ class DataFrame:
 
     def isna(self):
         """
-        Determines whehter each value in the DataFrame is missing or not
+        Determines whether each value in the DataFrame is missing or not
 
         Returns a DataFrame of booleans, the same size as the calling DataFrame
         """
@@ -404,3 +404,17 @@ class DataFrame:
             val = lenght - values.sum()
             new_data[col] = np.array([val])
         return DataFrame(new_data)
+
+    def unique(self):
+        """
+        Finds the unique values of each column
+
+        Returns a list of one column DataFrames
+        """
+        dfs = []
+        for col, values in self._data.items():
+            uniques = np.unique(values)
+            dfs.append(DataFrame({col: uniques}))
+        if len(dfs) == 1:
+            return dfs[0]
+        return dfs
