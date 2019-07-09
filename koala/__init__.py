@@ -389,3 +389,18 @@ class DataFrame:
             else:
                 new_data[col] = np.isnan(values)
         return DataFrame(new_data)
+
+
+    def count(self):
+        """
+        Counts the number of non-missing values per column
+
+        Returns a DataFrame
+        """
+        new_data = {}
+        df =self.isna()
+        length = len(self)
+        for col, values in df._data.items():
+            val = lenght - values.sum()
+            new_data[col] = np.array([val])
+        return DataFrame(new_data)
