@@ -452,3 +452,17 @@ class DataFrame:
         if len(dfs) == 1:
             return dfs[0]
         return dfs
+
+    def rename(self, columns):
+        """
+        Renames columns in the DataFrame
+
+        Returns a DataFrame
+        """
+        if not isinstance(columns, dict):
+            raise TypeError('`columns` must be a dictionary')
+
+        new_data = {}
+        for col, values in self._data.items():
+            new_data[columns.get(col, col)] = values
+        return DataFrame(new_data)
