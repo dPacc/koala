@@ -493,4 +493,19 @@ class DataFrame:
         Reutrns a DataFrame
         """
         return self._non_agg(np.abs)
-        
+
+    def cummin(self):
+        """
+        Finds the cumulative minimum by column
+
+        Returns a DataFrame
+        """
+        return self._non_agg(np.minimum.accumulate)
+
+    def cummax(self):
+        """
+        Finds the cumulative maximum by column
+
+        Returns a DataFrame
+        """
+        return self._non_agg(np.maximum.accumulate)
