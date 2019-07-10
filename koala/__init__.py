@@ -483,3 +483,14 @@ class DataFrame:
             if col not in columns:
                 new_data[col] = values
         return DataFrame(new_data)
+
+
+    ### Non-Aggregation Methods
+
+    def abs(self):
+        """
+        Take the absolute values of each value in the DataFrame
+        Reutrns a DataFrame
+        """
+        return self._non_agg(np.abs)
+        
