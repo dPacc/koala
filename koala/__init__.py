@@ -534,3 +534,11 @@ class DataFrame:
         Returns a DataFrame
         """
         return self._non_agg(np.round, 'if', decimals=n)
+
+    def copy(self):
+        """
+        Copies the DataFrame
+
+        Returns a DataFrame
+        """
+        return self._non_agg(np.copy)
