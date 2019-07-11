@@ -518,4 +518,11 @@ class DataFrame:
         """
         return self._non_agg(np.cumsum)
 
-    
+    def clip(self, lower=None, upper=None):
+        """
+        All values less than lower will be set to lower
+        All values freater than upper will be set to upper
+
+        Returns a DataFrame
+        """
+        return seld._non_agg(np.clip, a_min=lower, a_max=upper)
