@@ -591,3 +591,6 @@ class DataFrame:
                 values[n:] = np.NAN
             return values / values_shifted
         return self._non_agg(func)
+
+
+    ### Arithmatic and Comparison Operators
