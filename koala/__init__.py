@@ -574,3 +574,20 @@ class DataFrame:
                 values[:n] = np.NAN
             return values
         return self._non_agg(func)
+
+    def pct_change(self, n=1):
+        """
+        Takes the percentage difference between the current value and the nth value above it
+
+        Returns a DataFrame
+        """
+        def func(values):
+            values = values.astype('float')
+            values_shifted = np.roll(values, n)
+            values = values - values_shifted
+            if n >= 0:
+                values[:n] = np.NAN
+            else:
+                values[n:] = np.NAN
+            return values / values_shifted
+        return self._non_agg(func)
