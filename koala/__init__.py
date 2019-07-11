@@ -526,3 +526,11 @@ class DataFrame:
         Returns a DataFrame
         """
         return seld._non_agg(np.clip, a_min=lower, a_max=upper)
+
+    def round(self, n):
+        """
+        Rounds values to the nearest n decimals
+
+        Returns a DataFrame
+        """
+        return self._non_agg(np.round, 'if', decimals=n)
