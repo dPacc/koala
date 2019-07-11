@@ -542,3 +542,18 @@ class DataFrame:
         Returns a DataFrame
         """
         return self._non_agg(np.copy)
+
+    def _non_agg(self, funcname, kinds='bif', **kwargs):
+        """
+        It is a generic non-aggregation function
+
+        Returns a DataFrame
+        """
+        new_data = {}
+        for col, values in self._data.items():
+            if values.dtype.kind in kinds:
+                values = funcname(values, **kwargs)
+            else:
+                values = values.copy()
+            new_data[col] = values
+        return DataFrame(new_data)
