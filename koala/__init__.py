@@ -509,3 +509,13 @@ class DataFrame:
         Returns a DataFrame
         """
         return self._non_agg(np.maximum.accumulate)
+
+    def cumsum(self):
+        """
+        Finds the cumulative sum by column
+
+        Returns a DataFrame
+        """
+        return self._non_agg(np.cumsum)
+
+    
