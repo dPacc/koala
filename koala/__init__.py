@@ -594,3 +594,6 @@ class DataFrame:
 
 
     ### Arithmatic and Comparison Operators
+
+    def __add__(self, other):
+        return self._oper('__add__', other)
