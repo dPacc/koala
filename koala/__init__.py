@@ -597,3 +597,6 @@ class DataFrame:
 
     def __add__(self, other):
         return self._oper('__add__', other)
+
+    def __radd__(self, other):
+        return self._oper('__radd__', other)
