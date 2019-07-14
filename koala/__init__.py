@@ -600,3 +600,9 @@ class DataFrame:
 
     def __radd__(self, other):
         return self._oper('__radd__', other)
+
+    def __sub__(self, other):
+        return self._oper('__sub__', other)
+
+    def __rsub__(self, other):
+        return self._oper('__rsub__', other)
