@@ -606,3 +606,9 @@ class DataFrame:
 
     def __rsub__(self, other):
         return self._oper('__rsub__', other)
+
+    def __mul__(self, other):
+        return self._oper('__mul__', other)
+
+    def __rmul__(self, other):
+        return self._oper('__rmul__', other)
