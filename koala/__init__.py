@@ -618,3 +618,9 @@ class DataFrame:
 
     def __rtruediv__(self, other):
         return self._oper('__rtruediv__', other)
+
+    def __floordiv__(self, other):
+        return self._oper('__floordiv__', other)
+
+    def __rfloordiv__(self, other):
+        return self._oper('__rfloordiv__', other)
