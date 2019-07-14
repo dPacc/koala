@@ -612,3 +612,9 @@ class DataFrame:
 
     def __rmul__(self, other):
         return self._oper('__rmul__', other)
+
+    def __truediv__(self, other):
+        return self._oper('__truediv__', other)
+
+    def __rtruediv__(self, other):
+        return self._oper('__rtruediv__', other)
