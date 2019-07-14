@@ -624,3 +624,9 @@ class DataFrame:
 
     def __rfloordiv__(self, other):
         return self._oper('__rfloordiv__', other)
+
+    def __pow__(self, other):
+        return self._oper('__pow__', other)
+
+    def __rpow__(self, other):
+        return self._oper('__rpow__', other)
