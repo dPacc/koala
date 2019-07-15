@@ -642,3 +642,9 @@ class DataFrame:
 
     def __le__(self, other):
         return self.__oper('__le__', other)
+
+    def __ne__(self, other):
+        return self.__oper('__ne__', other)
+
+    def __eq__(self, other):
+        return self.__oper('__eq__', other)
