@@ -630,3 +630,9 @@ class DataFrame:
 
     def __rpow__(self, other):
         return self._oper('__rpow__', other)
+
+    def __gt__(self, other):
+        return self.__oper('__gt__', other)
+
+    def __lt__(self, other):
+        return self.__oper('__lt__', other)
