@@ -636,3 +636,9 @@ class DataFrame:
 
     def __lt__(self, other):
         return self.__oper('__lt__', other)
+
+    def __ge__(self, other):
+        return self.__oper('__ge__', other)
+
+    def __le__(self, other):
+        return self.__oper('__le__', other)
