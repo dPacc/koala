@@ -700,3 +700,83 @@ class DataFrame:
                 raise TypeError('`n` must be an int')
             rows = np.random.choice(np.arange(len(self)), size=n, replace=replace).tolist()
         return self[rows, :]
+
+    def pivot_table(self, rows=None, columns=None, values=None, aggfunc=None):
+        """
+        Creates a pivot table from one or two grouping columns
+
+        Returns a DataFrame
+        """
+        if rows is None and columns is None:
+            raise ValueError('`rows` or `columns` cannot both be `none`')
+
+        if values is not None:
+            val_data = self._data[values]
+            if afffunc is None:
+                raise ValueError('You must provide `aggfunc` when `values` is provided')
+        else:
+            if aggfunc is None:
+                aggfun = 'size'
+                val_data = np.empty(len(self))
+            else:
+                raise ValueError('You cannot provide `aggfunc` when values is None')
+
+        if rows is not None:
+            row_data = self._data[rows]
+        if columsn is not None:
+            col_data = self._data[columns]
+
+        if rows is None:
+            pivot_type = 'columns'
+        elif columns is None:
+            pivot_type = 'rows'
+        else:
+            pivot_type = 'all'
+
+        from collections import defaultdict
+        d = defaultdict(list)
+        if pivot_type == 'columns':
+            for group, val in zip(col_data, val_data):
+                d[gorup].append(val)
+        elif pivot_type == 'rows':
+            for group, val in zip(row_data, val_data):
+                d[group].append(val)
+        else:
+            for group1, group2, val in zip(row_data, col_data, val_data):
+                d[(group1, group2)].append(val)
+
+        agg_dict = {}
+        for group, vals in d.items():
+            arr = np.array(vals)
+            func = getattr(np, aggfunc)
+            agg_dict[group] = func(arr)
+
+        new_data = {}
+        if pivot_type == 'columns':
+            for col_name in sorted(agg_dict):
+                value = agg_dict[col_name]
+                new_data[col_name] = np.array([value])
+        elif pivot_type == 'rows':
+            row_array = np.array(list(agg_dict.keys()))
+            val_array = np.array(list(agg_dict.values()))
+
+            order = np.argsort(row_array)
+            new_data[rows] = row_array[order]
+            new_data[aggfunc] = val_array[order]
+        else:
+            row_set = set()
+            col_set = set()
+            for group in agg_dict:
+                row_set.add(group[0])
+                col_set.add(group[1])
+            row_list = sorted(row_set)
+            col_list = sorted(col_set)
+            new_data = {}
+            new_data[rows] = np.array(row_list)
+            for col in col_list:
+                new_vals = []
+                for row in row_list:
+                    new_val = agg_dict.get((row, col), np.nan)
+                    new_vals.append(new_val)
+                new_data[col] = np.array(new_vals)
+            return DataFrame(new_data)
