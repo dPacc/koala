@@ -648,3 +648,19 @@ class DataFrame:
 
     def __eq__(self, other):
         return self.__oper('__eq__', other)
+
+    def _oper(self, op, other):
+        """
+        Generic operator method
+
+        Returns a DataFrame
+        """
+        if isinstance(other, DataFrame):
+            if other.shape[1] != 1:
+                raise ValueError('`other` must be a one-column DataFrame')
+            other = next(iter(other._data.values()))
+        new_data = {}
+        for col, values in self._data.items():
+            func = getattr(values, op)
+            new_data[col] = func(other)
+        return DataFrame(new_data)
