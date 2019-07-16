@@ -682,3 +682,21 @@ class DataFrame:
         if not asc:
             order = order[::-1]
         return self[order.tolist(), :]
+
+    def sample(self, n=None, frac=None, replace=False, seed=None):
+        """
+        Randomly samples rows to the DataFrame
+
+        Returns a DataFrame
+        """
+        if seed:
+            np.random.seed(seed)
+        if frac is not None:
+            if frac <= 0:
+                raise ValueError('`frac` must be positive')
+            n = int(frac * len(self))
+        if n is not None:
+            if not isinstance(n, int):
+                raise TypeError('`n` must be an int')
+            rows = np.random.choice(np.arange(len(self)), size=n, replace=replace).tolist()
+        return self[rows, :]
