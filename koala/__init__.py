@@ -664,3 +664,21 @@ class DataFrame:
             func = getattr(values, op)
             new_data[col] = func(other)
         return DataFrame(new_data)
+
+    def sort_values(self, by, asc=True):
+        """
+        Sort the DataFrame by one or more values
+
+        Returns a DataFrame
+        """
+        if isinstance(by, str):
+            order = np.argsort(self._data[by])
+        elif isinstance(by, list):
+            cols = [self._data[col for col in by[::-1]]]
+            order = np.lexsort(cols)
+        else:
+            raise TypeError('`by` must be a str or a list')
+
+        if not asc:
+            order = order[::-1]
+        return self[order.tolist(), :]
