@@ -792,3 +792,11 @@ class DataFrame:
             """
             for name in agg_names:
                 getattr(DataFrame, name).__doc__ = agg+doc.format(name)
+
+    class StringMethods:
+
+        def __init__(self, df):
+            self._df = df
+
+        def capitalize(self, col):
+            return self._str_method(str.capitalize, col)
