@@ -807,4 +807,7 @@ class DataFrame:
             return self._str_method(str.center, col, width, fillchar)
 
         def count(self, col, sub, start=None, stop=None):
-            return self._str_method(str.endswith, col, sub, start, stop)
+            return self._str_method(str.count, col, sub, start, stop)
+
+        def endswith(self, col, suffix, start=None, stop=None):
+            return self._str_method(str.endswith, col, suffix, start, stop)
