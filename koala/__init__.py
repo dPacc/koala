@@ -805,3 +805,6 @@ class DataFrame:
             if fillchar is None:
                 fillchar = ' '
             return self._str_method(str.center, col, width, fillchar)
+
+        def count(self, col, sub, start=None, stop=None):
+            return self._str_method(str.endswith, col, sub, start, stop)
