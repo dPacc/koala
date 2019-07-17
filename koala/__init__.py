@@ -800,3 +800,8 @@ class DataFrame:
 
         def capitalize(self, col):
             return self._str_method(str.capitalize, col)
+
+        def center(self, col, width, fillchar=None):
+            if fillchar is None:
+                fillchar = ' '
+            return self._str_method(str.center, col, width, fillchar)
