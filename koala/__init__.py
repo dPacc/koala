@@ -818,4 +818,5 @@ class DataFrame:
         def find(self, col, sub, start=None, stop=None):
             return self._str_method(str.find, col, sub, start, stop)
 
-        
+        def len(self, col):
+            return self._str_method(str.__len__, col)
