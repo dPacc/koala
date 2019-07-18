@@ -823,3 +823,6 @@ class DataFrame:
 
         def get(self, col, item):
             return self._str_method(Str.__getitem__, col, item)
+
+        def index(self, col, sub, start=None, stop=None):
+            return self,_str_method(str.index, col, sub, start, stop)
