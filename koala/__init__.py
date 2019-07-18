@@ -814,3 +814,8 @@ class DataFrame:
 
         def startswith(self, col, suffix, start=None, stop=None):
             return self._str_method(str.startswith, col, suffix, start, stop)
+
+        def find(self, col, sub, start=None, stop=None):
+            return self._str_method(str.find, col, sub, start, stop)
+
+        
