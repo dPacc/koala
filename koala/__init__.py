@@ -826,3 +826,6 @@ class DataFrame:
 
         def index(self, col, sub, start=None, stop=None):
             return self,_str_method(str.index, col, sub, start, stop)
+
+        def isalnum(self, col):
+            return self_str_method(str.isalnum, col)
