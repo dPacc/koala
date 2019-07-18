@@ -820,3 +820,6 @@ class DataFrame:
 
         def len(self, col):
             return self._str_method(str.__len__, col)
+
+        def get(self, col, item):
+            return self._str_method(Str.__getitem__, col, item)
