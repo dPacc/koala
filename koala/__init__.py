@@ -811,3 +811,6 @@ class DataFrame:
 
         def endswith(self, col, suffix, start=None, stop=None):
             return self._str_method(str.endswith, col, suffix, start, stop)
+
+        def startswith(self, col, suffix, start=None, stop=None):
+            return self._str_method(str.startswith, col, suffix, start, stop)
