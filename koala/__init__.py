@@ -835,3 +835,9 @@ class DataFrame:
 
         def isdecimal(self, col):
             return self._str_method(str.isdecimal, col)
+
+        def islower(self, col):
+            return self._str_method(str.islower, col)
+
+        def isnumeric(self, col):
+            return self._str_method(str.isnumeric, col)
