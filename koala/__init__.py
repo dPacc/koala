@@ -841,3 +841,9 @@ class DataFrame:
 
         def isnumeric(self, col):
             return self._str_method(str.isnumeric, col)
+
+        def isspace(self, col):
+            return self._str_method(str.isspace, col)
+
+        def istitle(self, col):
+            return self._str_method(str.istitle, col)
