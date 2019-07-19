@@ -829,3 +829,9 @@ class DataFrame:
 
         def isalnum(self, col):
             return self_str_method(str.isalnum, col)
+
+        def isalpha(self, col):
+            return self._str_method(str.isalpha, col)
+
+        def isdecimal(self, col):
+            return self._str_method(str.isdecimal, col)
