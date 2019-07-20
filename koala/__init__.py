@@ -851,8 +851,11 @@ class DataFrame:
         def isupper(self, col):
             return self._str_method(str.isupper, col)
 
-        def lstrip(self, col):
+        def lstrip(self, col, chars):
             return self._str_method(str.lstrip, col)
 
-        def rstrip(self, col):
+        def rstrip(self, col, chars):
             return self._str_method(str.rstrip, col)
+
+        def strip(self, col, chars):
+            return self._str_method(str.strip, col, chars)
