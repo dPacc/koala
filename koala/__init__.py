@@ -864,3 +864,6 @@ class DataFrame:
             if count is None:
                 count = -1
             return self._str_method(str.replace, col, old, new, count)
+
+        def swapcase(self, col):
+            return self._str_method(str.swapcase, col)
