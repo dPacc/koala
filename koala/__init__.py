@@ -859,3 +859,8 @@ class DataFrame:
 
         def strip(self, col, chars):
             return self._str_method(str.strip, col, chars)
+
+        def replace(self, col, old, new, count=None):
+            if count is None:
+                count = -1
+            return self._str_method(str.replace, col, old, new, count)
