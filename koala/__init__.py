@@ -847,3 +847,6 @@ class DataFrame:
 
         def istitle(self, col):
             return self._str_method(str.istitle, col)
+
+        def isupper(self, col):
+            return self._str_method(str.isupper, col)
