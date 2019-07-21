@@ -867,3 +867,12 @@ class DataFrame:
 
         def swapcase(self, col):
             return self._str_method(str.swapcase, col)
+
+        def title(self, col):
+            return self._str_method(str.title, col)
+
+        def lower(self, col):
+            return self._str_method(str.lower, col)
+
+        def upper(self, col):
+            return self._str_method(str.upper, col)
