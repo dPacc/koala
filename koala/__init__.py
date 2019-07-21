@@ -897,4 +897,28 @@ class DataFrame:
             arr = np.array(new_values)
             return DataFrame({col: arr})
 
-            
+    def read_csv(fn):
+        """
+        Read a csv file as a DataFrame
+
+        Returns a DataFrame
+        """
+        from collections import defaultdict
+        values =defaultdict(list)
+        with open(fn) as f:
+            header = f.readline()
+            column_names = header.strip('\n').split(',')
+            for line in f:
+                vals = line.strip('\n').split(',')
+                for val, name in zip(vals, column_names):
+                    values[name].append(val)
+        new_data = {}
+        for col, vals in values.items():
+            try:
+                new_data[col] = np.array(vals, dtype='int')
+            except ValueError:
+                try:
+                    new_data[col] = np.array(vals, dtype='float')
+                except ValueError:
+                    new_data[col] = np.array(vals, dtype='O')
+        return DataFrame(new_data)
