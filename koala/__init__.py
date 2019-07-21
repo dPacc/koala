@@ -876,3 +876,9 @@ class DataFrame:
 
         def upper(self, col):
             return self._str_method(str.upper, col)
+
+        def zfill(self, col, width):
+            return self._str_method(str.zfill, col, width)
+
+        def encode(self, col, encoding='utf-8', errors='strict'):
+            return self._str_method(str.encode, col, encoding, errors)
