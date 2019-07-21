@@ -882,3 +882,19 @@ class DataFrame:
 
         def encode(self, col, encoding='utf-8', errors='strict'):
             return self._str_method(str.encode, col, encoding, errors)
+
+        def _str_method(self, method, col, *args):
+            old_values = self._df._data[col]
+            if old_values.dtype.kind != 'O':
+                raise TypeError('The `str` accessor only works with string columns')
+            new_values = []
+            for val in old_values:
+                if val is None:
+                    new_values.append(val)
+                else:
+                    new_val = method(val, *args)
+                    new_values.append(new_val)
+            arr = np.array(new_values)
+            return DataFrame({col: arr})
+
+            
