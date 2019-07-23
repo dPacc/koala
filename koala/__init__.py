@@ -904,7 +904,7 @@ class DataFrame:
         Returns a DataFrame
         """
         from collections import defaultdict
-        values =defaultdict(list)
+        values = defaultdict(list)
         with open(fn) as f:
             header = f.readline()
             column_names = header.strip('\n').split(',')
