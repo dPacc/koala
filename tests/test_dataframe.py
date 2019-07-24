@@ -58,3 +58,27 @@ class TestSelection:
 
         with pytest.raises(ValueError):
             df[1, 2, 3]
+
+    def test_single_element(self):
+        df_answer = pdc.DataFrame({'e': np.array([2])})
+        assert_df_equals(df[1, 'e'], df_answer)
+
+    def test_all_row_selections(self):
+        df1 = pdc.DataFrame({'a': np.array([True, False, True]),
+                             'b': np.array([1, 3, 5])})
+        with pytest.raises(ValueError):
+            df[df1, 'e']
+
+        with pytest.raises(TypeError):
+            df[df1['b'], 'c']
+
+        df_result = df[df1['a'], 'c']
+        df_answer = pdc.DataFrame({'c': c[[True, False, True]]})
+        assert_df_equals(df_result, df_answer)
+
+        df_result = df[[1, 2], 0]
+        df_answer = pdc.DataFrame({'a': a[[1, 2]]})
+        assert_df_equals(df_result, df_answer)
+
+        df_result = df[1:, 0]
+        assert_df_equals(df_result, df_answer)
