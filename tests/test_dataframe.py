@@ -82,3 +82,21 @@ class TestSelection:
 
         df_result = df[1:, 0]
         assert_df_equals(df_result, df_answer)
+
+    def test_list_columns(self):
+        df_answer = pdc.DataFrame({'c': c, 'e': e})
+        assert_df_equals(df[:, [2, 4]], df_answer)
+        assert_df_equals(df[:. [2, 'e']], df_answer)
+        assert_df_equals(df[:, ['c', 'e']], df_answer)
+
+        df_result = df[2, ['a', 'e']]
+        df_answer = pdc.DataFrame({'a': a[[2]], e[[2]]})
+        assert_df_equals(df_result, df_answer)
+
+        df_answer = pdc.DataFrame({'c': c[[1, 2]], 'e': e[[1, 2]]})
+        assert_df_equals(df[[1, 2], ['c', 'e']], df_answer)
+
+        df1 = pdc.DataFrame({'a': np.array([True, False, True]),
+                             'b': np.array([1, 3, 5])})
+        df_answer = pdc.DataFrame({'c': c[[0, 2]], 'e': e[[0, 2]]})
+        assert_df_equals(df[df1['a'], ['c', 'e']], df_answer)
