@@ -38,3 +38,12 @@ class TestSelection:
 
         with pytest.raises(ValueError):
             df_bool = pdc.DataFrame({'col': np.array[1, 2, 3]})
+
+    def test_one_column_tuple(self):
+        assert_df_equals(df[:, 'a'], pdc.DataFrame({'a': a}))
+
+    def test_multiple_columns_tuple(self):
+        cols = ['a', 'c']
+        df_result = df[:, cols]
+        df_answer = pdc.DataFrame({'a': a, 'c': c})
+        assert_df_equals(df_result, df_answer)
