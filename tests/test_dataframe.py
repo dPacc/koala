@@ -47,3 +47,14 @@ class TestSelection:
         df_result = df[:, cols]
         df_answer = pdc.DataFrame({'a': a, 'c': c})
         assert_df_equals(df_result, df_answer)
+
+    def test_int_selection(self):
+        assert_df_equals(df[:, 3], pdc.DataFrame({'d': d}))
+
+    def test_simultaneous_tuple(self):
+        with pytest.raises(TypeError):
+            s = set()
+            df[s]
+
+        with pytest.raises(ValueError):
+            df[1, 2, 3]
