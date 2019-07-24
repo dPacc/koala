@@ -26,3 +26,15 @@ class TestSelection:
         df_result = df[cols]
         df_answer = pdc.DataFrame({'a': a, 'c': c})
         assert_df_equals(df_result, df_answer)
+
+    def test_simple_boolean(self):
+        bool_arr = np.array([True, False, False])
+        df_bool = pdc.DataFrame({'col': bool_arr})
+        df_result = df[df_bool]
+        df_answer = pdc.DataFrame({'a': a[bool_arr], 'b': b[bool_arr],
+                                   'c': c[bool_arr], 'd': d[bool_arr],
+                                   'e': e[bool_arr]})
+        assert_df_equals(df_result, df_answer)
+
+        with pytest.raises(ValueError):
+            df_bool = pdc.DataFrame({'col': np.array[1, 2, 3]})
