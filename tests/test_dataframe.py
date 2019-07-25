@@ -165,3 +165,13 @@ class TestSelection:
         df_answer = pdc.DataFrame({'a': a[-2:], 'b': b[-2:], 'c': c[-2:],
                                    'd':d[-2:], 'e': e[-2:]})
         assert_df_equals(df_result, df_answer)
+
+  a1 = np.array(['a', 'b', 'c'])
+  b1 = np.array([11, 5, 8])
+  c1 = np.array([3.4, np.nan, 5.1])
+  df1 = pdc.DataFra,e({'a': a1, 'b': b1, 'c': c2})
+
+  a2 = np.array([True, False])
+  b2 = np.array([True, True])
+  c2 = np.array([False, True])
+  df2 = pdc.DataFrame({'a': a2, 'b': b2, 'c': c2})
