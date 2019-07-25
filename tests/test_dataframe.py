@@ -175,3 +175,21 @@ class TestSelection:
   b2 = np.array([True, True])
   c2 = np.array([False, True])
   df2 = pdc.DataFrame({'a': a2, 'b': b2, 'c': c2})
+
+
+  class TestAggregation:
+
+
+      def test_min(self):
+          df_result = df1.min()
+          df_answer = pdc.DataFrame({'a': np.array(['a'], dtype='O'),
+                                     'b': np.array([5]),
+                                     'c': np.array([np.nan])})
+          assert_df_equals(df_result, df_answer)
+
+      def test_max(self):
+          df_result = df1.max()
+          df_answer = pdc.DataFrame({'a': np.array(['c'], dtype='O'),
+                                     'b': np.array([11]),
+                                     'c': np.array([np.nan])})
+          assert_df_equals(df_result, df_answer)
