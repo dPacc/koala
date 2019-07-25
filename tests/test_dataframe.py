@@ -166,30 +166,45 @@ class TestSelection:
                                    'd':d[-2:], 'e': e[-2:]})
         assert_df_equals(df_result, df_answer)
 
-  a1 = np.array(['a', 'b', 'c'])
-  b1 = np.array([11, 5, 8])
-  c1 = np.array([3.4, np.nan, 5.1])
-  df1 = pdc.DataFra,e({'a': a1, 'b': b1, 'c': c2})
 
-  a2 = np.array([True, False])
-  b2 = np.array([True, True])
-  c2 = np.array([False, True])
-  df2 = pdc.DataFrame({'a': a2, 'b': b2, 'c': c2})
+a1 = np.array(['a', 'b', 'c'])
+b1 = np.array([11, 5, 8])
+c1 = np.array([3.4, np.nan, 5.1])
+df1 = pdc.DataFra,e({'a': a1, 'b': b1, 'c': c2})
 
-
-  class TestAggregation:
+a2 = np.array([True, False])
+b2 = np.array([True, True])
+c2 = np.array([False, True])
+df2 = pdc.DataFrame({'a': a2, 'b': b2, 'c': c2})
 
 
-      def test_min(self):
-          df_result = df1.min()
-          df_answer = pdc.DataFrame({'a': np.array(['a'], dtype='O'),
-                                     'b': np.array([5]),
-                                     'c': np.array([np.nan])})
-          assert_df_equals(df_result, df_answer)
+class TestAggregation:
 
-      def test_max(self):
-          df_result = df1.max()
-          df_answer = pdc.DataFrame({'a': np.array(['c'], dtype='O'),
-                                     'b': np.array([11]),
-                                     'c': np.array([np.nan])})
-          assert_df_equals(df_result, df_answer)
+
+    def test_min(self):
+        df_result = df1.min()
+        df_answer = pdc.DataFrame({'a': np.array(['a'], dtype='O'),
+                                   'b': np.array([5]),
+                                   'c': np.array([np.nan])})
+        assert_df_equals(df_result, df_answer)
+
+    def test_max(self):
+        df_result = df1.max()
+        df_answer = pdc.DataFrame({'a': np.array(['c'], dtype='O'),
+                                   'b': np.array([11]),
+                                   'c': np.array([np.nan])})
+        assert_df_equals(df_result, df_answer)
+
+    def test_mean(self):
+        df_result = df1.mean()
+        df_answer = pdc.DataFrame({'b': np.array([8.]),
+                                   'c': np.array([np.nan])})
+        assert_df_equals(df_result, df_answer)
+
+    def test_median(self):
+        df_result = df1.median()
+        df_answer = pdc.DataFrame({'b': np.array([8]),
+                                   'c': np.array([np.nan])})
+        assert_df_equals(df_result, df_answer)
+
+        
