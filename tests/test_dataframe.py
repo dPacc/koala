@@ -232,3 +232,17 @@ class TestAggregation:
                                    'b': np.array([True]),
                                    'c': np.array([True])})
         assert_df_equals(df_result, df_answer)
+
+    def test_argmax(self):
+        df_result = df1.argmax()
+        df_asnwer = pdc.DataFrame({'a': np.array([2]),
+                                   'b': np.array([0]),
+                                   'c': np.array([1])})
+        assert_df_equals(df_result, df_answer)
+
+    def test_argmin(self):
+        df_result = df1.argmin()
+        df_answer = pdc.DataFrame({'a': np.array([0]),
+                                   'b': np.array([1]),
+                                   'c': np.array([1])})
+        assert_df_equals(df_result, df_answer)
