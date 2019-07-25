@@ -218,3 +218,17 @@ class TestAggregation:
         df_answer = pdc.DataFrame({'b': np.array([b1.std()]),
                                    'c': np.array([np.nan])})
         assert_df_equals(df_result, df_answer)
+
+    def test_all(self):
+        df_result = df2.all()
+        df_answer = pdc.DataFrame({'a': np.array([False]),
+                                   'b': np.array([True]),
+                                   'c': np.array([False])})
+        assert_df_equals(df_result, df_answer)
+
+    def test_any(self):
+        df_result = df2.any()
+        df_answer = pdc.DataFrame({'a': np.array([True]),
+                                   'b': np.array([True]),
+                                   'c': np.array([True])})
+        assert_df_equals(df_result, df_answer)
