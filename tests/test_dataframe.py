@@ -207,4 +207,14 @@ class TestAggregation:
                                    'c': np.array([np.nan])})
         assert_df_equals(df_result, df_answer)
 
-        
+    def test_sum(self):
+        df_result = df1.var()
+        df_answer = pdc.DataFrame({'b': np.array([b1.var()]),
+                                   'c': np.array([np.nan])})
+        assert_df_equals(df_result, df_answer)
+
+    def test_std(self):
+        df_result = df1.std()
+        df_answer = pdc.DataFrame({'b': np.array([b1.std()]),
+                                   'c': np.array([np.nan])})
+        assert_df_equals(df_result, df_answer)
