@@ -274,3 +274,16 @@ class TestOtherMethods:
                                    'b': np.array([3]),
                                    'c': np.array([2])})
         assert_df_equals(df_result, df_answer)
+
+    def test_unique(self):
+        df_result = df4.unique()
+        assert_array_equal(df_result[0].values[:, 0], np.unique(a4))
+        assert_array_equal(df_result[1].values[:, 0], np.unique(b4))
+        assert_array_equal(df_result[2].values[:, 0], np.unique(c4))
+
+    def test_nunique(self):
+        df_result = df4.nunique()
+        df_answer = pdc.DataFrame({'a': np.array([2]),
+                                   'b': np.array([2]),
+                                   'c': np.array([2])})
+        assert_df_equals(df_result, df_answer)
