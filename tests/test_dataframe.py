@@ -287,3 +287,13 @@ class TestOtherMethods:
                                    'b': np.array([2]),
                                    'c': np.array([2])})
         assert_df_equals(df_result, df_answer)
+
+    def test_rename(self):
+        df_result = df4.rename({'a': 'A', 'c': 'C'})
+        df_answer = pdc.DataFrame({'A': a4, 'b': b4, 'C': c4})
+        assert_df_equals(df_result, df_answer)
+
+    def test_drop(self):
+        df_result = df4.drop(['a', 'b'])
+        df_answer = pdc.DataFrame({'c': c4})
+        assert_df_equals(df_result, df_answer)
