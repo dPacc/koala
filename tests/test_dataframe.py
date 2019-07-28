@@ -348,3 +348,9 @@ class TestNonAgg:
         df_answer = pdc.DataFrame({'a': np.array([np.nan, 16, -2]),
                                    'b': np.array([np.nan, 1.7, -11.1])})
         assert_df_equals(df_result, df_answer)
+
+    def test_pct_change(self):
+        df_result = df42.pct_change(1)
+        df_answer = pdc.DataFrame({'a': np.array([np.nan, 16 / -11, -2 / 5]),
+                                   'b': np.array([np.nan, 1.7 / 3.4, -11.1 / 5.1])})
+        assert_df_equals(df_result, df_answer)
