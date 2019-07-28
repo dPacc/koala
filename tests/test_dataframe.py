@@ -321,3 +321,9 @@ class TestNonAgg:
         df_answer = pdc.DataFrame({'a': np.array([-11, 5, 5]),
                                    'b': np.array([3.4, 5.1, 5.1])})
         assert_df_equals(df_result, df_answer)
+
+    def test_cumsum(self):
+        df_result = df42.cumsum()
+        df_answer = pdc.DataFrame({'a': np.array([-11, -6, -3]),
+                                   'b': np.array([3.4, 8.5, 2.5])})
+        assert_df_equals(df_result, df_answer)
