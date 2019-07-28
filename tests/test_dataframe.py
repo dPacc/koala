@@ -327,3 +327,15 @@ class TestNonAgg:
         df_answer = pdc.DataFrame({'a': np.array([-11, -6, -3]),
                                    'b': np.array([3.4, 8.5, 2.5])})
         assert_df_equals(df_result, df_answer)
+
+    def test_clip(self):
+        df_result = df42.clip(0, 4)
+        df_answer = pdc.DataFrame({'a': np.array([0, 4, 3]),
+                                   'b': np.array([3.4, 4, 0])})
+        assert_df_equals(df_result, df_answer)
+
+    def test_round(self):
+        df_result = df42.round(0)
+        df_answer = pdc.DataFrame({'a': np.array([-11, 5, 3]),
+                                   'b': np.array([3, 5, -6])})
+        assert_df_equals(df_result, df_answer)            
