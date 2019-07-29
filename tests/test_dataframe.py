@@ -396,3 +396,12 @@ class TestOperators:
         df_result = 3 / df5
         df_answer = pdc.DataFrame({'a': 3 / a5, 'b': 3 / b5})
         assert_df_equals(df_result, df_answer)
+
+    def test_floordiv(self):
+        df_result = df5 // 3
+        df_answer = pdc.DataFrame({'a': a5 // 3, 'b': b5 // 3})
+        assert_df_equals(df_result, df_answer)
+
+        df_result = 3 // df5
+        df_answer = pdc.DataFrame({'a': 3 // a5, 'b': 3 // b5})
+        assert_df_equals(df_result, df_answer)
