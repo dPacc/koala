@@ -354,3 +354,28 @@ class TestNonAgg:
         df_answer = pdc.DataFrame({'a': np.array([np.nan, 16 / -11, -2 / 5]),
                                    'b': np.array([np.nan, 1.7 / 3.4, -11.1 / 5.1])})
         assert_df_equals(df_result, df_answer)
+
+
+a5 = np.array([11, 5])
+b5 = np.array([3.4, 5.1])
+df5 = pdc.DataFrame({'a': a5, 'b': b5})
+
+
+class TestOperators:
+
+    def test_add(self):
+        df_result = df5 + 3
+        df_answer = pdc.DataFrame({'a': a5 + 3, 'b': b5 + 3})
+        assert_df_equals(df_result, df_answer)
+
+        df_result = 3 + df5
+        assert_df_equals(df_result, df_answer)
+
+    def test_sub(self):
+        df_result = df5 - 3
+        df_answer = pdc.DataFrame({'a': a5 - 3, 'b': b5 - 3})
+        assert_df_equals(df_result, df_answer)
+
+        df_result = 3 - df5
+        df_answer = pdc.DataFrame({'a': 3 - a5, 'b': 3 - b5})
+        assert_df_equals(df_result, df_answer)
