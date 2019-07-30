@@ -423,3 +423,21 @@ class TestOperators:
         df_result = df5 < 2
         df_answer = pdc.DataFrame({'a': a5 < 2, 'b': b5 < 2})
         assert_df_equals(df_result, df_answer)
+
+    def test_ge_le(self):
+        df_result = df5 >= 3
+        df_answer = pdc.DataFrame({'a': a5 >= 3, 'b': b5 >= 3})
+        assert_df_equals(df_result, df_answer)
+
+        df_result = df5 < 2
+        df_answer = pdc.DataFrame({'a': a5 <= 2, 'b': b5 <= 2})
+        assert_df_equals(df_result, df_answer)
+
+    def test_eq_ne(self):
+        df_result = df5 == 3
+        df_answer = pdc.DataFrame({'a': a5 == 3, 'b': b5 == 3})
+        assert_df_equals(df_result, df_answer)
+
+        df_result = df5 != 2
+        df_answer = pdc.DataFrame({'a': a5 != 2, 'b': b5 != 2})
+        assert_df_equals(df_result, df_answer)
