@@ -466,3 +466,17 @@ class TestMoreMethods:
         b = np.array([5.1, 6, 3.4, 1,2])
         df_answer = pdc.DataFrame({'a': a, 'b': b})
         assert_df_equals(df_result, df_answer)
+
+    def test_sort_values_two(self):
+        df_result = df7.sort_values(['a', 'b'])
+        a = np.array(['a', 'a', 'a', 'b', 'b'])
+        b = np.array([1, 2, 5.1, 3.4, 6])
+        df_answer = pdc.DataFrame({'a': a, 'b': b})
+        assert_df_equals(df_result, df_answer)
+
+    def test_sort_values_two_desc(self):
+        df_result = df7.sort_values(['a', 'b'], asc=False)
+        a = np.array(['a', 'a', 'a', 'b', 'b'])
+        b = np.array([1, 2, 5.1, 3.4, 6])
+        df_answer = pdc.DataFrame({'a': a[::-1], 'b': b[::-1]})
+        assert_df_equals(df_result, df_answer)
