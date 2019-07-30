@@ -480,3 +480,20 @@ class TestMoreMethods:
         b = np.array([1, 2, 5.1, 3.4, 6])
         df_answer = pdc.DataFrame({'a': a[::-1], 'b': b[::-1]})
         assert_df_equals(df_result, df_answer)
+
+    def test_sample(self):
+        df_result = df7.sample(2, seed=1)
+        df_answer = pdc.DataFrame({'a': np.array(['a', 'a'], dtype=object),
+                                   'b': np.array([2., 5.1])})
+        assert_df_equals(df_result, df_answer)
+
+        df_result = df7.sample(frac=.7, seed=1)
+        df_answer = pdc.DataFrame({'a': np.array(['a', 'a', 'b'], dtype=object),
+                                   'b': np.array([2., 5.1, 6.])})
+        assert_df_equals(df_result, df_answer)
+
+        with pytest.raises(TypeError):
+            df7.sample(2.5)
+
+        with pytest.raises(ValueError):
+            df7.sample(frac=-2)
