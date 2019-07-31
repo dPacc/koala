@@ -517,3 +517,15 @@ class TestGrouping:
         df_answer = pdc.DataFrame({'fruit': np.array(['a', 'b'], dtype=object),
                                    'count': np.array([5, 3])})
         assert_df_equals(df_results[1], df_answer)
+
+    def test_value_counts_normalize(self):
+        df_temp = pdc.DataFrame({'state': np.array(['texas', 'texas', 'texas', 'florida', 'florida', 'florida', 'florida', 'ohio']),
+                                 'fruit': np.array(['a', 'a', 'a', 'a', 'b', 'b', 'b', 'a'])})
+        df_results = df_temp.value_counts(normalize=True)
+        df_answer = pdc.DataFrame({'state': np.array(['florida', 'texas', 'ohio'], dtype=object),
+                                   'count': np.array([.5, .375, .125])})
+        assert_df_equals(df_results[0], df_answer)
+
+        df_answer = pdc.DataFrame({'fruit': np.array(['a', 'b'], dtype=object),
+                                   'count': np.array([.625, .375])})
+        assert_df_equals(df_results[1], df_answer)
