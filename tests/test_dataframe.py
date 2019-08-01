@@ -549,3 +549,10 @@ class TestGrouping:
         df_result = df8.pivot_table(columns='a', values='c', aggfunc='sum')
         df_answer = pdc.DataFrame({'a': np.array([22]), 'b': np.array([14])})
         assert_df_equals(df_result, df_answer)
+
+    def test_pivot_table_both(self):
+        df_result = df8.pivot_table(rows='a', columns='b', values='c', aggfunc='sum')
+        df_answer = pdc.DataFrame({'a': np.array(['a', 'b'], dtype=object),
+                                   'A': np.array([9., 8.]),
+                                   'B': np.array([13., 6.])})
+        assert_df_equals(df_result, df_answer)
