@@ -529,3 +529,23 @@ class TestGrouping:
         df_answer = pdc.DataFrame({'fruit': np.array(['a', 'b'], dtype=object),
                                    'count': np.array([.625, .375])})
         assert_df_equals(df_results[1], df_answer)
+
+    def test_pivot_table_rows_or_cols(self):
+        df_result = df8.pivot_table(rows='a')
+        df_answer = pdc.DataFrame({'a': np.array(['a', 'b'], dtype=object),
+                                   'size': np.array([5, 3])})
+        assert_df_equals(df_result, df_answer)
+
+        df_result = df8.pivot_table(rows='a', values='c', aggfunc='sum')
+        df_answer = pdc.DataFrame({'a': np.array(['a', 'b'], dtype=object),
+                                   'sum': np.array([22, 14])})
+        assert_df_equals(df_result, df_answer)
+
+        df_result = df8.pivot_table(columns='b')
+        df_answer = pdc.DataFrame({'A': np.array([4]),
+                                   'B': np.array([4])})
+        assert_df_equals(df_result, df_answer)
+
+        df_result = df8.pivot_table(columns='a', values='c', aggfunc='sum')
+        df_answer = pdc.DataFrame({'a': np.array([22]), 'b': np.array([14])})
+        assert_df_equals(df_result, df_answer)
