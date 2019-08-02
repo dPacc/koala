@@ -556,3 +556,17 @@ class TestGrouping:
                                    'A': np.array([9., 8.]),
                                    'B': np.array([13., 6.])})
         assert_df_equals(df_result, df_answer)
+
+
+movie = np.array(['field of dreams', 'star wars'], dtype='O')
+num = np.array(['5.1', '6'], dtype='O')
+df_string = pdc.DataFrame({'movie': movie, 'num': num})
+
+
+class TestStrings:
+
+    def test_capitalize(self):
+        result = df_string.str.capitalize('movie')
+        movie = np.array(['Field of dreams', 'Star wars'], dtype='O')
+        answer = pdc.DataFrame({'movie': movie})
+        assert_df_equals(result, answer)
