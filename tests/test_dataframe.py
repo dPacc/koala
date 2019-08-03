@@ -570,3 +570,9 @@ class TestStrings:
         movie = np.array(['Field of dreams', 'Star wars'], dtype='O')
         answer = pdc.DataFrame({'movie': movie})
         assert_df_equals(result, answer)
+
+    def test_center(self):
+        result = df_string.str.center('movie', 20, '-')
+        movie = np.array(['--field of dreams---', '-----star wars------'], dtype='O')
+        answer = pdc.DataFrame({'movie': movie})
+        assert_df_equals(result, answer)
