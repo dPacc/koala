@@ -582,3 +582,9 @@ class TestStrings:
         movie = np.array([2, 0])
         answer = pdc.DataFrame({'movie': movie})
         assert_df_equals(result, answer)
+
+    def test_startswith(self):
+        result = df_string.str.startswith('movie', 'field')
+        movie = np.array([True, False])
+        answer = pdc.DataFrame({'movie': movie})
+        assert_df_equals(result, answer)
