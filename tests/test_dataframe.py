@@ -588,3 +588,9 @@ class TestStrings:
         movie = np.array([True, False])
         answer = pdc.DataFrame({'movie': movie})
         assert_df_equals(result, answer)
+
+    def test_endswith(self):
+        result = df_string.str.endswith('movie', 's')
+        movie = np.array([True, True])
+        answer = pdc.DataFrame({'movie': movie})
+        assert_df_equals(result, answer)
