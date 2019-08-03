@@ -594,3 +594,9 @@ class TestStrings:
         movie = np.array([True, True])
         answer = pdc.DataFrame({'movie': movie})
         assert_df_equals(result, answer)
+
+    def test_find(self):
+        result = df_string.str.find('movie', 'ar')
+        movie = np.array([-1, 2])
+        answer = pdc.DataFrame({'movie': movie})
+        assert_df_equals(result, answer)
