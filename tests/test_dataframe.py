@@ -576,3 +576,9 @@ class TestStrings:
         movie = np.array(['--field of dreams---', '-----star wars------'], dtype='O')
         answer = pdc.DataFrame({'movie': movie})
         assert_df_equals(result, answer)
+
+    def test_count(self):
+        result = df_string.str.count('movie', 'e')
+        movie = np.array([2, 0])
+        answer = pdc.DataFrame({'movie': movie})
+        assert_df_equals(result, answer)
