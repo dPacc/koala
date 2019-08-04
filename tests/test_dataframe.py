@@ -606,3 +606,9 @@ class TestStrings:
         movie = np.array([15, 9])
         answer = pdc.DataFrame({'movie': movie})
         assert_df_equals(result, answer)
+
+    def test_get(self):
+        result = df_string.str.get('movie', 5)
+        movie = np.array([' ', 'w'], dtype='O')
+        answer = pdc.DataFrame({'movie': movie})
+        assert_df_equals(result, answer)
