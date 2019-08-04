@@ -622,3 +622,9 @@ class TestStrings:
         num = np.array([False, True])
         answer = pdc.DataFrame({'num': num})
         assert_df_equals(result, answer)
+
+    def test_isalpha(self):
+        result = df_string.str.isalpha('num')
+        num = np.array([False, False])
+        answer = pdc.DataFrame({'num': num})
+        assert_df_equals(result, answer)
