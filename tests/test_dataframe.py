@@ -628,3 +628,9 @@ class TestStrings:
         num = np.array([False, False])
         answer = pdc.DataFrame({'num': num})
         assert_df_equals(result, answer)
+
+    def test_isdecimal(self):
+        result = df_string.str.isdecimal('num')
+        num = np.array([False, True])
+        answer = pdc.DataFrame({'num': num})
+        assert_df_equals(result, answer)
