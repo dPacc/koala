@@ -612,3 +612,13 @@ class TestStrings:
         movie = np.array([' ', 'w'], dtype='O')
         answer = pdc.DataFrame({'movie': movie})
         assert_df_equals(result, answer)
+
+    def test_index(self):
+        with pytest.raises(ValueError):
+            df_string.str.index('movie', 'z')
+
+    def test_isalnum(self):
+        result = df_string.str.isalnum('num')
+        num = np.array([False, True])
+        answer = pdc.DataFrame({'num': num})
+        assert_df_equals(result, answer)
