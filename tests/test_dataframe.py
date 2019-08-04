@@ -600,3 +600,9 @@ class TestStrings:
         movie = np.array([-1, 2])
         answer = pdc.DataFrame({'movie': movie})
         assert_df_equals(result, answer)
+
+    def test_len(self):
+        result = df_string.str.len('movie')
+        movie = np.array([15, 9])
+        answer = pdc.DataFrame({'movie': movie})
+        assert_df_equals(result, answer)
