@@ -652,3 +652,9 @@ class TestStrings:
         movie = np.array([False, False])
         answer = pdc.DataFrame({'movie': movie})
         assert_df_equals(result, answer)
+
+    def test_isspace(self):
+        result = df_string.str.isspace('num')
+        num = np.array([False, False])
+        answer = pdc.DataFrame({'num': num})
+        assert_df_equals(result, answer)
