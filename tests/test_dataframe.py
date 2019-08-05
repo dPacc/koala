@@ -634,3 +634,11 @@ class TestStrings:
         num = np.array([False, True])
         answer = pdc.DataFrame({'num': num})
         assert_df_equals(result, answer)
+
+    def test_isnumeric(self):
+        result = df_string.str.isnumeric('num')
+        num = np.array([False, True])
+        answer = pdc.DataFrame({'num': num})
+        assert_df_equals(result, answer)
+
+        
