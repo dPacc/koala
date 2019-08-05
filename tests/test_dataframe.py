@@ -658,3 +658,9 @@ class TestStrings:
         num = np.array([False, False])
         answer = pdc.DataFrame({'num': num})
         assert_df_equals(result, answer)
+
+    def test_istitle(self):
+        result = df_string.str.istitle('num')
+        num = np.array([False, False])
+        answer = pdc.DataFrame({'num': num})
+        assert_df_equals(result, answer)
