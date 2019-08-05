@@ -641,4 +641,14 @@ class TestStrings:
         answer = pdc.DataFrame({'num': num})
         assert_df_equals(result, answer)
 
-        
+    def test_islower(self):
+        result = df_string.str.islower('movie')
+        movie = np.array([True, True])
+        answer = pdc.DataFrame({'movie': movie})
+        assert_df_equals(result, answer)
+
+    def test_isupper(self):
+        result = df_string.str.isupper('movie')
+        movie = np.array([False, False])
+        answer = pdc.DataFrame({'movie': movie})
+        assert_df_equals(result, answer)
