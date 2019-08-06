@@ -676,3 +676,14 @@ class TestStrings:
         movie = np.array(['0field of dreams', '0000000star wars'], dtype='O')
         answer = pdc.DataFrame({'movie': movie})
         assert_df_equals(result, answer)
+
+
+df_emp = pdc.read_csv('data/employee.csv')
+
+
+class TestReadCSV:
+
+    def test_columns(self):
+        result = df_emp.columns
+        answer = ['dept', 'race', 'gender', 'salary']
+        assert result == answer
