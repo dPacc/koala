@@ -664,3 +664,15 @@ class TestStrings:
         num = np.array([False, False])
         answer = pdc.DataFrame({'num': num})
         assert_df_equals(result, answer)
+
+    def test_upper(self):
+        result = df_string.str.upper('movie')
+        movie = np.array(['FIELD OF DREAMS', 'STAR WARS'], dtype='O')
+        answer = pdc.DataFrame({'movie': movie})
+        assert_df_equals(result, answer)
+
+    def test_zfill(self):
+        result = df_string.str.zfill('movie', 16)
+        movie = np.array(['0field of dreams', '0000000star wars'], dtype='O')
+        answer = pdc.DataFrame({'movie': movie})
+        assert_df_equals(result, answer)
