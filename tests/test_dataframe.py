@@ -687,3 +687,11 @@ class TestReadCSV:
         result = df_emp.columns
         answer = ['dept', 'race', 'gender', 'salary']
         assert result == answer
+
+    def test_data_types(self):
+        df_result = df_emp.dtypes
+        cols = np.array(['dept', 'race', 'gender', 'salary'], dtype='O')
+        dtypes = np.array(['string', 'string', 'string', 'int'], dtype='O')
+        df_answer = pdc.DataFrame({'Column Name': cols,
+                                   'Data Type': dtypes})
+        assert_df_equals(df_result, df_answer)
