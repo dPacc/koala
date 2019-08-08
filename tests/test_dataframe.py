@@ -695,3 +695,8 @@ class TestReadCSV:
         df_answer = pdc.DataFrame({'Column Name': cols,
                                    'Data Type': dtypes})
         assert_df_equals(df_result, df_answer)
+
+    def test_sum(self):
+        result = df_emp['salary'].sum()
+        answer = 86387875
+        assert result == answer
