@@ -700,3 +700,16 @@ class TestReadCSV:
         result = df_emp['salary'].sum()
         answer = 86387875
         assert result == answer
+
+    def test_head(self):
+        data = {'dept': np.array(['Houston Police Department-HPD',
+                                  'Houston Fire Department (HFD)',
+                                  'Houston Police Department-HPD',
+                                  'Public Works & Engineering-PWE',
+                                  'Houston Airport System (HAS)'], dtype='O'),
+                'race': np.array(['White', 'White', 'Black', 'Asian', 'White'], dtype='O'),
+                'gender': np.array(['Male', 'Male', 'Male', 'Male', 'Male'], dtype='O'),
+                'salary': np.array([45279, 63166, 66614, 71680, 42390])}
+        result = df_emp.head()
+        answer = pdc.DataFrame(data)
+        assert_df_equals(result, answer)
